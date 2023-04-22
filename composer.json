@@ -1,0 +1,25 @@
+{
+    "name": "pyncer/image",
+    "type": "library",
+    "description": "Pyncer library for manipulating images.",
+    "homepage": "https://pyncer.com/image",
+    "license": "Unlicense",
+    "require": {
+        "php": ">=8.1",
+        "pyncer/exception": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pyncer\\Image\\": "src/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/pyncerrc/pyncer-image/issues",
+        "source": "https://github.com/pyncerrc/pyncer-image"
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-main" : "1.0-dev"
+        }
+    }
+}
