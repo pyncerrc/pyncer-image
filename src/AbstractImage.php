@@ -252,10 +252,11 @@ abstract class AbstractImage implements ImageInterface
         $driverName = $this->getDriver()->getName();
 
         $file = __DIR__ . DS . 'Driver' . DS . $driverName . DS .
-            'Functions' . DS . $function . '.php';
+            'Functions' . DS . $function . 'Function.php';
 
         if (file_exists($file)) {
-            $class = '\Pyncer\Image\Driver\\' . $driverName . '\Functions\\' . $function;
+            $class = '\Pyncer\Image\Driver\\' . $driverName .
+                '\Functions\\' . $function . 'Function';
             return new $class();
         }
 
