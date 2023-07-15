@@ -1,7 +1,6 @@
 <?php
 namespace Pyncer\Image\Driver\Imagick\Functions;
 
-use Imagick
 use Pyncer\Image\FunctionInterface;
 use Pyncer\Image\ImageInterface;
 
