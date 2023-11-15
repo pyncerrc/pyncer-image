@@ -14,6 +14,7 @@ use Pyncer\Image\Y;
 interface ImageInterface
 {
     public function getDriver(): Driver;
+    public function getImage(): ImageInterface;
 
     public function getHandle(): ?object;
     public function setHandle(?object $value): static;
@@ -25,6 +26,7 @@ interface ImageInterface
         ?Color $background = null,
     ): static;
     public function save(?string $file = null): static;
+    public function close(): static;
 
     public function getImageFormat(): ImageFormat;
     public function setImageFormat(ImageFormat $value): static;

@@ -38,6 +38,11 @@ abstract class AbstractImage implements ImageInterface
         return $this->driver;
     }
 
+    public function getImage(): ImageInterface
+    {
+        return $this->getDriver()->getImage();
+    }
+
     public function getHandle(): ?object
     {
         return $this->handle;
@@ -94,6 +99,12 @@ abstract class AbstractImage implements ImageInterface
 
         file_put_contents($file, $this->encode($imageFormat));
 
+        return $this;
+    }
+
+    public function close(): static
+    {
+        $this->setHandle(null);
         return $this;
     }
 

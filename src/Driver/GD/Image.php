@@ -8,17 +8,6 @@ use Pyncer\Image\ImageFormat;
 
 class Image extends AbstractImage
 {
-    public function setHandle(?object $value): static
-    {
-        $handle = $this->getHandle();
-
-        if ($handle !== null && $handle !== $value) {
-            imagedestroy($handle);
-        }
-
-        return parent::setHandle($value);
-    }
-
     public function new(
         int $width,
         int $height,
@@ -92,11 +81,16 @@ class Image extends AbstractImage
 
     protected function encodeJpeg(): mixed
     {
+        $quality = $this->getDriver()->getParam(
+            'gd_jpeg_quality',
+            $this->getQuality()
+        );
+
         ob_start();
         imagejpeg(
             $this->getHandle(),
             null,
-            $this->getQuality()
+            $quality
         );
         return ob_get_clean();
     }
@@ -106,8 +100,13 @@ class Image extends AbstractImage
         imagealphablending($handle, false);
         imagesavealpha($handle, true);
 
+        $quality = $this->getDriver()->getParam(
+            'gd_png_quality',
+            9
+        );
+
         ob_start();
-        imagepng($handle, null, -1);
+        imagepng($handle, null, $quality);
         return ob_get_clean();
     }
     protected function encodeGif(): mixed
@@ -122,11 +121,16 @@ class Image extends AbstractImage
         imagealphablending($handle, false);
         imagesavealpha($handle, true);
 
+        $quality = $this->getDriver()->getParam(
+            'gd_webp_quality',
+            $this->getQuality()
+        );
+
         ob_start();
         imagewebp(
             $handle,
             null,
-            $this->getQuality()
+            $quality,
         );
         return ob_get_clean();
     }
@@ -136,12 +140,22 @@ class Image extends AbstractImage
         imagealphablending($handle, false);
         imagesavealpha($handle, true);
 
+        $quality = $this->getDriver()->getParam(
+            'gd_avif_quality',
+            $this->getQuality()
+        );
+
+        $speed = $this->getDriver()->getParam(
+            'gd_avif_speed',
+            $this->getSpeed()
+        );
+
         ob_start();
         imageavif(
             $handle,
             null,
-            $this->getQuality(),
-            $this->getSpeed()
+            $quality,
+            $speed
         );
         return ob_get_clean();
     }

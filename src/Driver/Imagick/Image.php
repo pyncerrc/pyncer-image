@@ -15,7 +15,7 @@ class Image extends AbstractImage
         $handle = $this->getHandle();
 
         if ($handle !== null && $handle !== $value) {
-            $handle->destroy();
+            $handle->clear();
         }
 
         return parent::setHandle($value);
@@ -119,18 +119,19 @@ class Image extends AbstractImage
         );
         $handle->setImageCompression($compression);
 
-        // Quality
-        $quality = $this->getDriver()->getParam(
-            'imagick_png_compression_quality',
+        // Compression level
+        $level= $this->getDriver()->getParam(
+            'imagick_png_compression_level',
             9
         );
-        $handle->setCompressionQuality($quality);
+        $handle->setOption('png:compression-level', $level)
 
+        // Quality
         $quality = $this->getDriver()->getParam(
             'imagick_png_image_compression_quality',
             0
         );
-        $handle->setImageCompressionQuality(0);
+        $handle->setImageCompressionQuality($quality);
 
         return $handle->getImageBlob();
     }
