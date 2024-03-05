@@ -7,6 +7,7 @@
 - Added getImage() function to Image as shortcut to getDriver()-\>getImage().
 - Added close() function to Image as shortcut to setHandle(null).
 - Added more image param override options for each driver image format.
+- Driver now extends AbstractDriver utility class.
 
 ### Fixed
 
