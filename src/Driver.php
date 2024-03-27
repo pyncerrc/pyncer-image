@@ -8,6 +8,18 @@ use Stringable;
 
 final class Driver extends AbstractDriver
 {
+    public function __construct(
+        string $name,
+        ?int $quality = null,
+        ?int $speed = null,
+        array $params = []
+    ) {
+        parent::__construct($name, $params);
+
+        $this->setQuality($quality);
+        $this->setSpeed($speed);
+    }
+
     protected function getType(): string
     {
         return 'image';
