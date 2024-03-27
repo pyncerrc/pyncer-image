@@ -124,7 +124,7 @@ class Image extends AbstractImage
             'imagick_png_compression_level',
             9
         );
-        $handle->setOption('png:compression-level', $level)
+        $handle->setOption('png:compression-level', $level);
 
         // Quality
         $quality = $this->getDriver()->getParam(
